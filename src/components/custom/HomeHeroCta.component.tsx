@@ -1,12 +1,25 @@
 "use client";
+import { useState } from "react";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { CtaLinks } from "@/global/link";
 import { font } from "@/global/font";
 import { motion } from "framer-motion";
+import ModalPopup from "@/components/ui/ModalPopup.component";
+import { useScramble } from 'use-scramble'
 
 export default function HomeHeroCta() {
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const { ref } = useScramble({
+    text: 'I&apos;m a software engineer specializing in web development.',
+    tick: 4,
+    speed: 1,
+    scramble: 4,
+    step: 1,
+    seed: 3,
+  })
   return (
     <main
       className={clsx(
@@ -32,9 +45,10 @@ export default function HomeHeroCta() {
             <h1 className={clsx(font.className, "text-6xl tracking-tight")}>
               Josh<span className={clsx("text-indigo-400")}>McLain</span>
             </h1>
-            <p className={clsx("mt-4 tracking-tight")}>
+            <p className={clsx("mt-4 tracking-tight")} ref={ref} />
+            {/* <p className={clsx("mt-4 tracking-tight")}>
               I&apos;m a software engineer specializing in web development.
-            </p>
+            </p> */}
           </header>
         </motion.div>
         <section className="mt-14 space-x-6 md:space-x-4 z-0">
@@ -56,13 +70,18 @@ export default function HomeHeroCta() {
               animate={{ opacity: 1 }}
               transition={{ delay: 2 + (index * 0.2), duration: 1 }}
               whileTap={{ scale: 0.8 }} 
+              onTap={() => index === 1 ? openModal() : null} 
             >
-            <NextLink href={link.href}>
+            <NextLink href={index === 1 ? '#' : link.href }>
               {link.label}
             </NextLink>
                 </motion.button>
           ))}
         </section>
+        <ModalPopup isOpen={isModalOpen} onClose={closeModal}>
+          <input type="text" placeholder="email" />
+          <textarea placeholder="message" />
+          </ModalPopup >
         {/* </AnimatePresence> */}
     </main>
   );
