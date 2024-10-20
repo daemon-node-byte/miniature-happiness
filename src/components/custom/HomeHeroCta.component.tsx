@@ -37,11 +37,12 @@ export default function HomeHeroCta() {
             </p>
           </header>
         </motion.div>
-        <section className="mt-14 space-x-4 z-0">
+        <section className="mt-14 space-x-6 md:space-x-4 z-0">
           {CtaLinks.map((link, index) => (
-            <motion.span 
+            <motion.button 
             className={clsx(
-              "px-4 py-6",
+              'text-sm',
+              "px-3 py-4 md:px-4 md:py-6",
               index !== 1
               ? "border border-indigo-400 hover:bg-indigo-400 hover:border-foreground"
               : "border text-indigo-400 hover:bg-foreground hover:text-indigo-800 hover:border-indigo-800",
@@ -59,7 +60,7 @@ export default function HomeHeroCta() {
             <NextLink href={link.href}>
               {link.label}
             </NextLink>
-                </motion.span>
+                </motion.button>
           ))}
         </section>
         {/* </AnimatePresence> */}
