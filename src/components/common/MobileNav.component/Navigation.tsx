@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { MenuItem } from './MenuItem';
+import { navLinks } from '@/global/link';
 
 
 
@@ -12,12 +13,10 @@ const variants3 = {
   }
 };
 
-const itemIds = [0, 1, 2, 3, 4];
-
 export const Navigation = () => (
-  <motion.ul className='absolute top-[100px] w-[230px]' variants={variants3}>
-    {itemIds.map(i => (
-      <MenuItem i={i} key={i} />
+  <motion.ul className='absolute top-[100px] w-[300px]' variants={variants3}>
+    {navLinks.map((item) => (
+      <MenuItem key={item.id} link={item} />
     ))}
   </motion.ul>
 );
