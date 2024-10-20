@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import TopNavbar from "@/components/TopNavbar.component";
-import HomeHeroCta from '@/components/HomeHeroCta.component'
-import MobileNav from "@/components/MobileNav.component";
+import TopNavbar from "@/components/common/TopNavbar.component";
+import HomeHeroCta from '@/components/custom/HomeHeroCta.component'
+import MobileNav from '@/components/common/MobileNav.component'
 
 export default function Home() {
   return (
